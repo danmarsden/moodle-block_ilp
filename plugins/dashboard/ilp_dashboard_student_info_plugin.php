@@ -12,10 +12,8 @@
  */
 //require the ilp_plugin.php class 
 require_once($CFG->dirroot.'/blocks/ilp/classes/plugins/ilp_dashboard_plugin.class.php');
-
 require_once($CFG->dirroot.'/blocks/ilp/classes/ilp_percentage_bar.class.php');
-
-
+require_once($CFG->dirroot.'/user/profile/lib.php');
 
 class ilp_dashboard_student_info_plugin extends ilp_dashboard_plugin {
 	
@@ -40,12 +38,24 @@ class ilp_dashboard_student_info_plugin extends ilp_dashboard_plugin {
 	 * @see ilp_dashboard_plugin::display()
 	 */
 	function display()	{	
-		global	$CFG,$OUTPUT,$PAGE,$PARSER,$USER,$SESSION;
+		global	$CFG,$OUTPUT,$PAGE,$PARSER,$USER,$SESSION, $DB;
 
 		//set any variables needed by the display page	
 		
 		//get students full name
 		$student	=	$this->dbc->get_user_by_id($this->student_id);
+
+        // load any custom profile fields
+        $student_custom_fields = new stdClass();
+
+        if ($fields = $DB->get_records('user_info_field')) {
+            foreach ($fields as $field) {
+                require_once($CFG->dirroot.'/user/profile/field/'.$field->datatype.'/field.class.php');
+                $newfield = 'profile_field_'.$field->datatype;
+                $formfield = new $newfield($field->id, $this->student_id);
+                $student_custom_fields->{$field->shortname} = $formfield->data;
+            }
+        }
 
         $nextstudent    =   false;
         $prevstudent    =   false;
