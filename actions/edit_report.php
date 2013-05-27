@@ -30,6 +30,46 @@ $report_id	= $PARSER->optional_param('report_id',NULL,PARAM_INT);
 // instantiate the db
 $dbc = new ilp_db();
 
+//set the page title
+$pagetitle	=	(empty($report_id)) ? get_string('createreport', 'block_ilp') : get_string('editreport', 'block_ilp');
+
+// setup the navigation breadcrumbs
+
+//siteadmin or modules
+//we need to determine which moodle we are in and give the correct area name
+$sectionname	=	(stripos($CFG->release,"2.") !== false) ? get_string('administrationsite') : get_string('administration');
+
+$PAGE->navbar->add($sectionname,null,'title');
+
+//plugins or modules
+//we need to determine which moodle we are in and give the correct area name
+$sectionname	=	(stripos($CFG->release,"2.") !== false) ? get_string('plugins','admin') : get_string('managemodules');
+
+$PAGE->navbar->add($sectionname,null,'title');
+
+$PAGE->navbar->add(get_string('blocks'),null,'title');
+
+
+//block name
+$url	=	$CFG->wwwroot."/admin/settings.php?section=blocksettingilp";
+
+$PAGE->navbar->add(get_string('blockname', 'block_ilp'),$url,'title');
+
+//section name
+$PAGE->navbar->add(get_string('reportconfiguration', 'block_ilp'),$CFG->wwwroot."/blocks/ilp/actions/edit_report_configuration.php",'title');
+
+//get string for create report
+$PAGE->navbar->add($pagetitle,null,'title');
+
+
+// setup the page title and heading
+$SITE	=	$dbc->get_course_by_id(SITEID);
+$PAGE->set_title($SITE->fullname." : ".get_string('blockname','block_ilp'));
+$PAGE->set_heading($SITE->fullname);
+$PAGE->set_pagetype('ilp-configuration');
+$PAGE->set_pagelayout(ILP_PAGELAYOUT);
+$PAGE->set_url('/blocks/ilp/actions/edit_report.php', $PARSER->get_params());
+
 //instantiate the edit_report_mform class
 $mform	=	new edit_report_mform($report_id);
 
@@ -84,9 +124,6 @@ if($mform->is_submitted()) {
     }
 }
 
-//set the page title
-$pagetitle	=	(empty($report_id)) ? get_string('createreport', 'block_ilp') : get_string('editreport', 'block_ilp');
-
 
 if (!empty($report_id)) {
 	$reportrecord	=	$dbc->get_report_by_id($report_id);
@@ -113,48 +150,8 @@ if (!empty($report_id)) {
 
     $mform->set_data($reportrecord);
 
-} 
-
-
-
-// setup the navigation breadcrumbs
-
-//siteadmin or modules
-//we need to determine which moodle we are in and give the correct area name
-$sectionname	=	(stripos($CFG->release,"2.") !== false) ? get_string('administrationsite') : get_string('administration');
-
-$PAGE->navbar->add($sectionname,null,'title');
-
-//plugins or modules
-//we need to determine which moodle we are in and give the correct area name
-$sectionname	=	(stripos($CFG->release,"2.") !== false) ? get_string('plugins','admin') : get_string('managemodules');
-
-$PAGE->navbar->add($sectionname,null,'title');
-
-$PAGE->navbar->add(get_string('blocks'),null,'title');
-
-
-//block name
-$url	=	$CFG->wwwroot."/admin/settings.php?section=blocksettingilp";
-
-$PAGE->navbar->add(get_string('blockname', 'block_ilp'),$url,'title');
-
-//section name
-$PAGE->navbar->add(get_string('reportconfiguration', 'block_ilp'),$CFG->wwwroot."/blocks/ilp/actions/edit_report_configuration.php",'title');
-
-//get string for create report
-$PAGE->navbar->add($pagetitle,null,'title');
-
-
-// setup the page title and heading
-$SITE	=	$dbc->get_course_by_id(SITEID);
-$PAGE->set_title($SITE->fullname." : ".get_string('blockname','block_ilp'));
-$PAGE->set_heading($SITE->fullname);
-$PAGE->set_pagetype('ilp-configuration');
-$PAGE->set_pagelayout(ILP_PAGELAYOUT);
-$PAGE->set_url('/blocks/ilp/actions/edit_report.php', $PARSER->get_params());
+}
 
 
 require_once($CFG->dirroot.'/blocks/ilp/views/edit_report.html');
 
-?>
