@@ -1,0 +1,34 @@
+<?php
+
+// include standard libraries
+$PAGE->requires->yui2_lib("yahoo");
+$PAGE->requires->yui2_lib("event");
+$PAGE->requires->yui2_lib("dom");
+
+// load the standard YUI style sheet
+$PAGE->requires->css_theme(new moodle_url($CFG->wwwroot.'/lib/yui/2.9.0/build/container/assets/container.css'));
+
+
+$jsmodule = array(
+'name'     	=> 'ilp_standard_functions',
+'fullpath' 	=> '/blocks/ilp/views/js/lib.js',
+'requires'  	=> array('event','dom')
+);
+
+$PAGE->requires->js_init_call('M.ilp_standard_functions.init', null, true, $jsmodule);
+
+echo $OUTPUT->header();
+?>
+<div class="ilp">
+<?php
+echo $OUTPUT->heading($pagetitle); 
+
+
+//render the form
+$mform->display();
+
+?>
+</div>
+<?php
+echo $OUTPUT->footer();
+?>

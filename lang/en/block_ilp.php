@@ -94,6 +94,7 @@
 
 	$string['disablereport']		= 	'Disable Report';
 	$string['disabled'] 			= 	'Disabled';
+    $string['downloadusagereport']  =   'Download ILP Usage Report';
 	$string['editcomment']			= 	'Edit Comment';
 	$string['editfield']			=	'Edit Field';
     $string['editfields']			=	'Edit Fields';
@@ -104,11 +105,12 @@
 	$string['editreportfields']		=	'Edit Report Fields';
 	$string['edit_status_items']	=	'Edit Status Items';
     $string['editstatusitems']		=	'Edit Status Items';
-    $string['entrydeleted']		=	'The Report was successfully deleted';
+    $string['entrydeleted']		    =	'The Report was successfully deleted';
     $string['exceededmaxentries']	=	'You have reached the maximum number of {$a->maxentries} entries for this report';
     $string['expandall']			=	'Expand all';
 	$string['enablereport'] 		= 	'Enable Report';
     $string['enabled'] 				= 	'Enabled';
+    $string['enddate']              =   'End date';
     $string['expandentries']		=	'Expand entries';
     $string['numberentries']		= 	'{$a->entries} entries';
 	$string['entrycreator'] 		= 	'Tutor';
@@ -136,6 +138,7 @@
 	
 	$string['fieldmovesuc']			=	'The field was successfully moved';
 	$string['fieldreqsuc']			=	'The field was required status was successfully changed';
+    $string['generatereports']      =   'Generate reports';
     $string['graph_pluginsettings']	= 	'Graph Plugin Settings';
     $string['graphcreationsuc'] 	= 	'Graph successfully created';
     $string['graphcreationerror'] 	= 	'Error whilst creating graph';
@@ -303,6 +306,7 @@
 
 	$string['settings']							= 	'Settings';
     $string['sixmonthdata']				        = 	'Past 6 months data';
+    $string['startdate']                        =   'Start date';
 	$string['statenotchanged']					= 	'State has not been changed';
 	$string['statechanged']						= 	'State changed';
 	

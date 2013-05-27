@@ -298,5 +298,8 @@ $globalsettings 	= new admin_setting_heading('block_ilp/miscconfig', get_string(
 
 $settings->add($globalsettings);
 
+$link ='<a href="'.$CFG->wwwroot.'/blocks/ilp/actions/generate_reports.php">'.get_string('downloadusagereport', 'block_ilp').'</a>';
+$settings->add(new admin_setting_heading('block_ilp_usage_report', '', $link));
+
 
 ?>
