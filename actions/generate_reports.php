@@ -85,7 +85,7 @@ if ($mform->is_submitted()) {
     where r.deleted = 0
     and (e.timecreated between :start_date and :end_date)
     order by e.user_id, r.name";
-    $result = $DB->get_records_sql($sql, array(':start_date' => $formdata->start_date, ':end_date' => $formdata->end_date));
+    $result = $DB->get_records_sql($sql, array('start_date' => $formdata->start_date, 'end_date' => $formdata->end_date));
 
 //  $report_fields = array(
 //    3 => array(
