@@ -617,6 +617,13 @@ $string['ilp_dashboard_archive_tab_studentinfo_shared']	 					= 'Shared text';
 
 $string['ilp_dashboard_archive_tab_pluginnamesettings'] = 'Archive tab Configuration';
 
+// NMIT LANGS.
+$string['downloadusagereport']  =   'Download ILP Usage Report';
+$string['enddate']              =   'End date';
+$string['generatereports']      =   'Generate reports';
+$string['startdate']                        =   'Start date';
+// END NMIT LANGS.
+
 // Stop doing really nasty stuff during tests.
 // TODO: these should really be moved into proper sub-plugins.     
 if ((!defined('BEHAT_SITE_RUNNING') || BEHAT_SITE_RUNNING == false) &&
