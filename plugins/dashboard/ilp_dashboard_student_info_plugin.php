@@ -14,6 +14,8 @@ require_once($CFG->dirroot.'/blocks/ilp/classes/plugins/ilp_dashboard_plugin.cla
 
 require_once($CFG->dirroot.'/blocks/ilp/classes/ilp_percentage_bar.class.php');
 
+require_once($CFG->dirroot.'/user/profile/lib.php'); // NMIT Change.
+
 class ilp_dashboard_student_info_plugin extends ilp_dashboard_plugin {
 
    public		$student_id;
@@ -106,6 +108,17 @@ class ilp_dashboard_student_info_plugin extends ilp_dashboard_plugin {
          //the student was not found display and error
          print_error('studentnotfound','block_ilp');
       }
+        // NMIT Load any custom profile fields.
+        $student_custom_fields = new stdClass();
+        if ($fields = $DB->get_records('user_info_field')) {
+            foreach ($fields as $field) {
+                require_once($CFG->dirroot.'/user/profile/field/'.$field->datatype.'/field.class.php');
+                $newfield = 'profile_field_'.$field->datatype;
+                $formfield = new $newfield($field->id, $this->student_id);
+                $student_custom_fields->{$field->shortname} = $formfield->data;
+            }
+        }
+        // END NMIT change.
 
       $display_only_middle_studentinfo = (!empty($ajax_settings) && isset($ajax_settings['middle_studentinfo'])
           && $ajax_settings['middle_studentinfo']) ? true : false;

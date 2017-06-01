@@ -49,6 +49,13 @@ if (!empty($nextstudent)) {
 			}
 		}
 		?>
+        <!-- NMIT CHANGE - Trying to add student profile content here. -->
+        <div id="ilp_statement"><div class="ilp_statement_content"><p>Your Individual Learning Plan (ILP) is a personal document where you and the people who teach you can set personal targets and record discussions about how your study is progressing. Only staff who teach you or provide learning & study support can read what you write here, not other students. Confidential things should be raised directly with your tutor or learning coach.</div></div>
+        <p><span class="ilp_profile_field_title">Email:</span> <?php echo $student->email;?><br />
+             <span class="ilp_profile_field_title">Programme:</span> <?php echo $student_custom_fields->programme;?><br />
+             <span class="ilp_profile_field_title">Literacy & Numeracy results:</span> <br/><?php echo $student_custom_fields->litnumresults;?><br />
+        </p>
+        <!-- END OF NMIT CHANGE. -->
     </div>
 	</div>
 <div class="clearfix"> </div>
