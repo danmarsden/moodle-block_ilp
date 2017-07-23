@@ -617,6 +617,9 @@ $string['ilp_dashboard_archive_tab_studentinfo_shared']	 					= 'Shared text';
 
 $string['ilp_dashboard_archive_tab_pluginnamesettings'] = 'Archive tab Configuration';
 
+$string['cachedef_ilp_miscache'] = 'ILP cache report entries';
+$string['cachedef_user_capability_cache']  = 'ILP cache user capabilities';
+
 // NMIT LANGS.
 $string['downloadusagereport']  =   'Download ILP Usage Report';
 $string['enddate']              =   'End date';
